@@ -4,6 +4,8 @@ import Home from "./components/pages/Home";
 import Navbar from "./components/shared/Navbar";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
+import MyPortfolio from "./components/pages/MyPortfolio";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -12,8 +14,22 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
+        <Route path="/about-me" element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      {/* Same as */}
+      <ToastContainer />
     </div>
   );
 }

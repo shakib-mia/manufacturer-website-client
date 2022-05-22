@@ -25,6 +25,9 @@ const Navbar = () => {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
+            <li>
+              <NavLink to="/about-me">About Me</NavLink>
+            </li>
 
             {name ? (
               <li className="flex items-center">

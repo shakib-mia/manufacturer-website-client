@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import {
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -11,12 +14,22 @@ const Login = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleGoogleSignIn = () => {
     signInWithGoogle();
+  };
+
+  const forgetPassword = () => {
+    sendPasswordResetEmail(email);
+    toast.success("Password reset link has been sent", {
+      position: "bottom-right",
+      autoClose: 5000,
+    });
   };
 
   if (gUser || user) {
@@ -59,7 +72,6 @@ const Login = () => {
               <p className="text-rose-500 text-center">
                 {error ? "Email or Password Invalid" : ""}
               </p>
-
               <button
                 onClick={() => signInWithEmailAndPassword(email, password)}
                 className="btn bg-indigo-500 hover:bg-transparent hover:text-indigo-500 border-2 border-transparent hover:border-2 hover:border-primary"
@@ -67,6 +79,12 @@ const Login = () => {
                 Login
               </button>
             </div>
+            <span
+              className="text-left pl-16 underline cursor-pointer text-indigo-500 hover:decoration-none"
+              onClick={forgetPassword}
+            >
+              Forgot Password?
+            </span>
             <p className="pl-10 lg:pl-16">
               New in Manufacturer Website? &nbsp;
               <Link className="text-primary underline" to="/register">
@@ -85,7 +103,7 @@ const Login = () => {
             </button>
           </div>
         </div>
-      )}
+      )}{" "}
     </div>
   );
 };
