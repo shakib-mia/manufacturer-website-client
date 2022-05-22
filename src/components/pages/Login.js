@@ -22,7 +22,7 @@ const Login = () => {
   if (gUser || user) {
     localStorage.setItem(
       "user",
-      gUser.user.displayName || user.user.displayName
+      gUser?.user.displayName || user?.user.displayName
     );
     window.location.reload();
   }
