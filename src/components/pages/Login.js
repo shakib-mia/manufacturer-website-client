@@ -56,7 +56,9 @@ const Login = () => {
               required
             />
             <div className="text-right pr-10 lg:pr-16">
-              <p className="text-rose-500 text-center">{error?.message}</p>
+              <p className="text-rose-500 text-center">
+                {error ? "Email or Password Invalid" : ""}
+              </p>
 
               <button
                 onClick={() => signInWithEmailAndPassword(email, password)}
