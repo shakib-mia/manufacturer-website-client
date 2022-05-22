@@ -26,7 +26,7 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/about-me">About Me</NavLink>
+              <NavLink to="/about-me">My Portfolio</NavLink>
             </li>
 
             {name ? (
