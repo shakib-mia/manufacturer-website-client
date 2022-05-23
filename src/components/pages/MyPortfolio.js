@@ -12,6 +12,11 @@ const MyPortfolio = () => {
     <div className="my-24">
       <h1 className="text-center text-5xl">About Me</h1>
       <div className="overflow-x-auto my-5">
+        <img
+          src="https://scontent.fcgp7-1.fna.fbcdn.net/v/t1.6435-9/132192317_743153366300514_6691279611866987971_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=174925&_nc_eui2=AeEUriUEJhah8LumJJrwR6DHJlMbSlboxqUmUxtKVujGpVdUk9SVDFQvK1TkWIpabOLEX0-LUm0e3PJD7PFMGQCD&_nc_ohc=mYi-UoechokAX_nLQaD&_nc_ht=scontent.fcgp7-1.fna&oh=00_AT96PFGu58paAYSx4ulTVc2b1I-MLjKONY38tIJspszrVw&oe=62B055A2"
+          className="mx-auto rounded-full w-80"
+          alt="userImage"
+        />
         <table className="table table-zebra w-50 mx-auto">
           <tbody>
             <tr>

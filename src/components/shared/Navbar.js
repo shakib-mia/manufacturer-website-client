@@ -1,13 +1,13 @@
 import { signOut } from "firebase/auth";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "./../../firebase.init";
 
 const Navbar = () => {
-  const name = localStorage.getItem("name");
+  const name = localStorage.getItem("user");
   const handleSignOut = () => {
     signOut(auth);
-    localStorage.removeItem("name");
+    localStorage.removeItem("user");
     localStorage.removeItem("email");
     window.location.reload();
   };
@@ -29,12 +29,23 @@ const Navbar = () => {
             </li>
 
             {name ? (
-              <li className="flex items-center">
-                {name}{" "}
-                <button className="bg-red-300 mx-3" onClick={handleSignOut}>
-                  Sign Out
-                </button>
-              </li>
+              <>
+                <li className="items-center px-3">
+                  <Link to="/">Dashboard</Link>
+                </li>
+                <li className="items-center px-3">
+                  <Link to="/">My Orders</Link>
+                </li>
+                <li className="items-center px-3">
+                  <Link to="/">Add A Review</Link>
+                </li>
+                <li className="flex items-center">
+                  <Link to="/">{name}</Link>{" "}
+                  <button className="bg-red-300 mx-3" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                </li>
+              </>
             ) : (
               <li>
                 <NavLink to="/login">Login</NavLink>

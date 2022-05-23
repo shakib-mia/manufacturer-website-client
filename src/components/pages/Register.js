@@ -24,24 +24,20 @@ const Register = () => {
     signInWithGoogle();
   };
 
-  const register = () => {
-    createUserWithEmailAndPassword(email, password);
+  if (user) {
     sendEmailVerification(email);
-    toast.success("Email Verification Sent", {
+    user.user.displayName = firstName + " " + lastName;
+    localStorage.setItem("user", user.user.displayName);
+    window.location.reload();
+    toast.success("Email Verification link has been sent", {
       position: "bottom-right",
       autoClose: 5000,
     });
-    window.location.reload();
-  };
+  }
 
   if (gUser) {
     localStorage.setItem("name", gUser.user.displayName);
     window.location.reload();
-  }
-
-  if (user) {
-    user.user.displayName = firstName + " " + lastName;
-    localStorage.setItem("name", user.user.displayName);
   }
 
   return (
@@ -90,7 +86,7 @@ const Register = () => {
               <p className="text-rose-500 text-center" id="error"></p>
 
               <button
-                onClick={register}
+                onClick={() => createUserWithEmailAndPassword(email, password)}
                 className="btn bg-indigo-500 hover:bg-transparent hover:text-indigo-500 border-2 border-transparent hover:border-2 hover:border-primary"
               >
                 Register

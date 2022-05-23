@@ -32,6 +32,11 @@ const Login = () => {
     });
   };
 
+  if (gUser) {
+    localStorage.setItem("name", gUser.user.displayName);
+    window.location.reload();
+  }
+
   if (gUser || user) {
     localStorage.setItem(
       "user",
@@ -69,9 +74,7 @@ const Login = () => {
               required
             />
             <div className="text-right pr-10 lg:pr-16">
-              <p className="text-rose-500 text-center">
-                {error ? "Email or Password Invalid" : ""}
-              </p>
+              <p className="text-rose-500 text-center">{error?.message}</p>
               <button
                 onClick={() => signInWithEmailAndPassword(email, password)}
                 className="btn bg-indigo-500 hover:bg-transparent hover:text-indigo-500 border-2 border-transparent hover:border-2 hover:border-primary"
