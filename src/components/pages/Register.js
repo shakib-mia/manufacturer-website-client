@@ -3,44 +3,50 @@ import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
   useCreateUserWithEmailAndPassword,
+  useSendEmailVerification,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
+import { toast } from "react-toastify";
 
 const Register = () => {
-  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [sendEmailVerification, sending, verificationError] =
+    useSendEmailVerification(auth);
 
   const handleGoogleSignIn = () => {
     signInWithGoogle();
-    if (gUser) {
-      localStorage.setItem("user", gUser.user.displayName);
-      window.location.reload();
-    }
   };
 
   const register = () => {
-    if (password === confirmPassword) {
-      createUserWithEmailAndPassword(email, password);
-      if (!error) {
-        localStorage.setItem("email", user.user.email);
-      } else {
-        document.getElementById("error").innerHTML = error.message;
-      }
-    } else {
-      document.getElementById("error").innerText =
-        "Please Confirm Password Correctly";
-    }
+    createUserWithEmailAndPassword(email, password);
+    sendEmailVerification(email);
+    toast.success("Email Verification Sent", {
+      position: "bottom-right",
+      autoClose: 5000,
+    });
+    window.location.reload();
   };
+
+  if (gUser) {
+    localStorage.setItem("name", gUser.user.displayName);
+    window.location.reload();
+  }
+
+  if (user) {
+    user.user.displayName = firstName + " " + lastName;
+    localStorage.setItem("name", user.user.displayName);
+  }
 
   return (
     <div className="h-screen flex items-center">
-      {loading || gLoading ? (
+      {loading ? (
         <div className="shadow-lg w-96 lg:w-1/2 mx-auto py-10 px-10 rounded-full h-50">
           <div className="text-center">
             <progress className="progress w-full"></progress>
@@ -50,6 +56,20 @@ const Register = () => {
         <div className="shadow-lg w-96 lg:w-1/2 mx-auto py-10 h-50">
           <h1 className="text-center text-4xl font-bold">Register</h1>
           <div className="my-6">
+            <input
+              type="text"
+              placeholder="First Name"
+              className="w-10/12 block mx-auto border-2 my-4 py-3 px-2 shadow-md focus:shadow-0"
+              onBlur={(e) => setFirstName(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Last name"
+              className="w-10/12 block mx-auto border-2 my-4 py-3 px-2 shadow-md focus:shadow-0"
+              onBlur={(e) => setLastName(e.target.value)}
+              required
+            />
             <input
               type="email"
               name="email"
@@ -64,14 +84,6 @@ const Register = () => {
               placeholder="Password"
               className="w-10/12 block mx-auto border-2 my-4 py-3 px-2 shadow-md focus:shadow-0"
               onBlur={(e) => setPassword(e.target.value)}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Confirm Password"
-              className="w-10/12 block mx-auto border-2 my-4 py-3 px-2 shadow-md focus:shadow-0"
-              onBlur={(e) => setConfirmPassword(e.target.value)}
               required
             />
             <div className="text-right pr-10 lg:pr-16">

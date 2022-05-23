@@ -4,11 +4,10 @@ import { NavLink } from "react-router-dom";
 import auth from "./../../firebase.init";
 
 const Navbar = () => {
-  const name = localStorage.getItem("user");
-  const email = localStorage.getItem("email");
+  const name = localStorage.getItem("name");
   const handleSignOut = () => {
     signOut(auth);
-    localStorage.removeItem("user");
+    localStorage.removeItem("name");
     localStorage.removeItem("email");
     window.location.reload();
   };
@@ -32,13 +31,6 @@ const Navbar = () => {
             {name ? (
               <li className="flex items-center">
                 {name}{" "}
-                <button className="bg-red-300 mx-3" onClick={handleSignOut}>
-                  Sign Out
-                </button>
-              </li>
-            ) : email ? (
-              <li className="flex items-center">
-                {email}{" "}
                 <button className="bg-red-300 mx-3" onClick={handleSignOut}>
                   Sign Out
                 </button>
