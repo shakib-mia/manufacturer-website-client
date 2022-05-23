@@ -13,7 +13,7 @@ const Navbar = () => {
     window.location.reload();
   };
   return (
-    <div className="navbar bg-base-100 mx-auto shadow-lg fixed top-0">
+    <div className="navbar bg-base-100 mx-auto shadow-lg fixed top-0 z-10">
       <div className="container mx-auto">
         <div className="flex-1">
           <NavLink to="/" className="btn btn-ghost normal-case text-xl">
