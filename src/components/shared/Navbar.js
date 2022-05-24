@@ -4,10 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import auth from "./../../firebase.init";
 
 const Navbar = () => {
-  const name = localStorage.getItem("user");
+  const name = localStorage.getItem("name");
   const handleSignOut = () => {
     signOut(auth);
-    localStorage.removeItem("user");
+    localStorage.removeItem("name");
     localStorage.removeItem("email");
     window.location.reload();
   };
@@ -31,13 +31,7 @@ const Navbar = () => {
             {name ? (
               <>
                 <li className="items-center px-3">
-                  <Link to="/">Dashboard</Link>
-                </li>
-                <li className="items-center px-3">
-                  <Link to="/">My Orders</Link>
-                </li>
-                <li className="items-center px-3">
-                  <Link to="/">Add A Review</Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li className="flex items-center">
                   <Link to="/">{name}</Link>{" "}
