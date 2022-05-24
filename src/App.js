@@ -8,6 +8,8 @@ import MyPortfolio from "./components/pages/MyPortfolio";
 import { ToastContainer } from "react-toastify";
 import Dashbord from "./components/pages/Dashboard/Dashbord";
 import MyOrders from "./components/pages/Dashboard/MyOrders";
+import MyProfile from "./components/pages/Dashboard/MyReviews";
+import AddReview from "./components/pages/Dashboard/AddReview";
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
         <Route path="/about-me" element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path="/dashboard" element={<Dashbord></Dashbord>}>
           <Route index element={<MyOrders></MyOrders>}></Route>
+          <Route path="orders" element={<MyOrders></MyOrders>}></Route>
+          <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="add-review" element={<AddReview></AddReview>}></Route>
         </Route>
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
