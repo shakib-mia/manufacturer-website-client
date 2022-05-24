@@ -20,10 +20,6 @@ const Register = () => {
   const [sendEmailVerification, sending, verificationError] =
     useSendEmailVerification(auth);
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle();
-  };
-
   if (user) {
     sendEmailVerification(email);
     user.user.displayName = firstName + " " + lastName;
@@ -33,10 +29,32 @@ const Register = () => {
       position: "bottom-right",
       autoClose: 5000,
     });
+
+    fetch("http://localhost:5000/users", {
+      method: "put",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email: user.user.email,
+        name: user.user.displayName,
+      }),
+    });
   }
 
   if (gUser) {
+    const gUserSummary = {
+      email: gUser.user.email,
+      name: gUser.user.displayName,
+    };
     localStorage.setItem("name", gUser.user.displayName);
+    fetch("http://localhost:5000/users", {
+      method: "put",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(gUserSummary),
+    });
     window.location.reload();
   }
 
@@ -103,7 +121,7 @@ const Register = () => {
           <p className="text-rose-500 text-center">{gError?.message}</p>
           <div className="text-center flex justify-around flex-wrap w-8/12 mx-auto">
             <button
-              onClick={handleGoogleSignIn}
+              onClick={() => signInWithGoogle()}
               className="btn btn-success my-4"
             >
               Continue with Google

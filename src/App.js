@@ -10,6 +10,7 @@ import Dashbord from "./components/pages/Dashboard/Dashbord";
 import MyOrders from "./components/pages/Dashboard/MyOrders";
 import MyProfile from "./components/pages/Dashboard/MyReviews";
 import AddReview from "./components/pages/Dashboard/AddReview";
+import Purchase from "./components/pages/Purchase";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="profile" element={<MyProfile></MyProfile>}></Route>
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
         </Route>
+        <Route path="/purchase" element={<Purchase></Purchase>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
       <ToastContainer

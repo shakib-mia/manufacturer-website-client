@@ -31,10 +31,10 @@ const Navbar = () => {
             {name ? (
               <>
                 <li className="items-center px-3">
-                  <Link to="/dashboard">Dashboard</Link>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li className="flex items-center">
-                  <Link to="/">{name}</Link>{" "}
+                  <Link to="/dashboard/profile">{name}</Link>{" "}
                   <button className="bg-red-300 mx-3" onClick={handleSignOut}>
                     Sign Out
                   </button>
