@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useItems from "./../../hooks/useItems";
 import useUsers from "./../../hooks/useUsers";
+import { toast } from "react-toastify";
 
 const Purchase = () => {
   const id = localStorage.getItem("id");
@@ -39,6 +40,8 @@ const Purchase = () => {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
+
+    toast.success("Order Placed Successfully");
   };
 
   return (
