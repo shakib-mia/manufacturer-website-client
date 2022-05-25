@@ -11,7 +11,7 @@ const Purchase = () => {
   const name = localStorage.getItem("name");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [orderQuantity, setOrderQuantity] = useState("");
+  const [orderQuantity, setOrderQuantity] = useState(0);
   const quantity = parseInt(orderQuantity);
   const price = quantity * parseFloat(data[0]?.pricePerUnit);
 
@@ -85,6 +85,7 @@ const Purchase = () => {
             className="w-11/12 block mx-auto border-2 my-4 py-3 px-2"
             placeholder="Enter Your Address Here"
             onBlur={(e) => setAddress(e.target.value)}
+            required
           />
           <input
             type="text"
@@ -92,6 +93,7 @@ const Purchase = () => {
             className="w-11/12 block mx-auto border-2 my-4 py-3 px-2"
             placeholder="Enter Your Phone Number Here"
             onBlur={(e) => setPhoneNumber(e.target.value)}
+            required
           />
           <input
             type="text"
