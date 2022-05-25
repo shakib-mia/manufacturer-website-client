@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
@@ -10,6 +10,8 @@ import {
 } from "react-firebase-hooks/auth";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const id = localStorage.getItem("id");
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
   const [signInWithEmailAndPassword, user, loading, error] =
@@ -34,6 +36,8 @@ const Login = () => {
 
   if (gUser) {
     localStorage.setItem("name", gUser.user.displayName);
+    localStorage.setItem("email", gUser?.user.email);
+    id ? navigate(`/purchase/${id}`) : navigate("/");
     window.location.reload();
   }
 
@@ -42,6 +46,7 @@ const Login = () => {
       "user",
       gUser?.user.displayName || user?.user.displayName
     );
+    localStorage.setItem("email", gUser?.user.email);
     window.location.reload();
   }
 

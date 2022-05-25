@@ -1,13 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import useItems from "./../../../../hooks/useItems";
 
 const Tools = () => {
   const [data, getData] = useItems("http://localhost:5000/products");
   const homeItems = data.slice(0, 6);
+  const navigate = useNavigate();
 
   const buyNow = (id) => {
-    console.log(id);
     localStorage.setItem("id", id);
+    navigate(`/purchase/${id}`);
   };
 
   return (
@@ -36,7 +38,7 @@ const Tools = () => {
               <div className="card-actions justify-end">
                 <button
                   className="btn btn-primary"
-                  onClick={() => buyNow(item._id)}
+                  onClick={() => buyNow(item.id)}
                 >
                   Buy Now
                 </button>

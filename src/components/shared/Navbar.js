@@ -4,10 +4,10 @@ import { Link, NavLink } from "react-router-dom";
 import auth from "./../../firebase.init";
 
 const Navbar = () => {
-  const name = localStorage.getItem("name");
+  const name = localStorage.getItem("user");
   const handleSignOut = () => {
     signOut(auth);
-    localStorage.removeItem("name");
+    localStorage.removeItem("user");
     localStorage.removeItem("email");
     window.location.reload();
   };

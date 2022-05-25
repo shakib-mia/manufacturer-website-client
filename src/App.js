@@ -8,9 +8,10 @@ import MyPortfolio from "./components/pages/MyPortfolio";
 import { ToastContainer } from "react-toastify";
 import Dashbord from "./components/pages/Dashboard/Dashbord";
 import MyOrders from "./components/pages/Dashboard/MyOrders";
-import MyProfile from "./components/pages/Dashboard/MyReviews";
+import MyProfile from "./components/pages/Dashboard/MyProfile";
 import AddReview from "./components/pages/Dashboard/AddReview";
 import Purchase from "./components/pages/Purchase";
+import RequireAuth from "./RequireAuth";
 
 function App() {
   return (
@@ -26,7 +27,14 @@ function App() {
           <Route path="profile" element={<MyProfile></MyProfile>}></Route>
           <Route path="add-review" element={<AddReview></AddReview>}></Route>
         </Route>
-        <Route path="/purchase" element={<Purchase></Purchase>}></Route>
+        <Route
+          path="/purchase/:_id"
+          element={
+            <RequireAuth>
+              <Purchase></Purchase>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/register" element={<Register></Register>}></Route>
       </Routes>
       <ToastContainer

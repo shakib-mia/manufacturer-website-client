@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import {
   useCreateUserWithEmailAndPassword,
@@ -13,6 +13,8 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const navigate = useNavigate();
+  const id = localStorage.getItem("id");
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -21,10 +23,15 @@ const Register = () => {
     useSendEmailVerification(auth);
 
   if (user) {
+    console.log(id);
     sendEmailVerification(email);
     user.user.displayName = firstName + " " + lastName;
     localStorage.setItem("user", user.user.displayName);
-    window.location.reload();
+    localStorage.setItem("email", user.user.email);
+
+    id ? navigate(`/purchase/${id}`) : navigate("/");
+
+    // window.location.reload();
     toast.success("Email Verification link has been sent", {
       position: "bottom-right",
       autoClose: 5000,
@@ -47,7 +54,10 @@ const Register = () => {
       email: gUser.user.email,
       name: gUser.user.displayName,
     };
-    localStorage.setItem("name", gUser.user.displayName);
+    localStorage.setItem("user", gUser.user.displayName);
+    localStorage.setItem("email", gUser.user.email);
+    id ? navigate(`/purchase/${id}`) : navigate("/");
+
     fetch("http://localhost:5000/users", {
       method: "put",
       headers: {
