@@ -13,35 +13,41 @@ const Purchase = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [orderQuantity, setOrderQuantity] = useState("");
   const quantity = parseInt(orderQuantity);
+  const price = quantity * parseFloat(data[0]?.pricePerUnit);
 
   const placeOrder = (event) => {
     event.preventDefault();
-    const orderDetails = {
-      image: data[0]?.image,
-      details: data[0]?.description,
-      name,
-      email,
-      address,
-      phoneNumber,
-      quantity,
-    };
-    fetch("http://localhost:5000/orders", {
-      method: "put",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(orderDetails),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-
-    fetch(`http://localhost:5000/orders/${email}`, {
-      method: "put",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(orderDetails),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-
-    toast.success("Order Placed Successfully");
+    if (quantity >= data[0].minimumOrderQuantity) {
+      const orderDetails = {
+        image: data[0]?.image,
+        details: data[0]?.description,
+        perUnitPrice: data[0]?.pricePerUnit,
+        name,
+        email,
+        address,
+        phoneNumber,
+        quantity,
+      };
+      fetch("http://localhost:5000/orders", {
+        method: "put",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(orderDetails),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+      fetch(`http://localhost:5000/orders/${email}`, {
+        method: "put",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(orderDetails),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+      toast.success("Order Placed Successfully");
+    } else {
+      toast.error(
+        `Quantity should be greater than or equal to ${data[0].minimumOrderQuantity}`
+      );
+    }
   };
 
   return (
@@ -92,7 +98,12 @@ const Purchase = () => {
             name="minimumQuantity"
             placeholder="Order Quantity"
             className="w-11/12 block mx-auto border-2 my-4 py-3 px-2"
-            onBlur={(e) => setOrderQuantity(e.target.value)}
+            onChange={(e) => setOrderQuantity(e.target.value)}
+          />
+          <input
+            value={price}
+            className="w-11/12 block mx-auto border-2 my-4 py-3 px-2"
+            disabled
           />
           <input
             type="submit"

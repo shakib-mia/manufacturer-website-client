@@ -10,7 +10,7 @@ const MyOrders = () => {
   }, []);
   return (
     <div className="mt-10 ml-5">
-      My Orders
+      <h1 className="text-center text-3xl font-bold">My Orders</h1>
       {data.map((data) => (
         <div
           className="card w-96 mx-4 bg-base-100 shadow-lg my-4"
