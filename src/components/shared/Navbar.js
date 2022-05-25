@@ -1,14 +1,16 @@
 import { signOut } from "firebase/auth";
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import auth from "./../../firebase.init";
 
 const Navbar = () => {
   const name = localStorage.getItem("user");
+  const navigate = useNavigate();
   const handleSignOut = () => {
     signOut(auth);
     localStorage.removeItem("user");
     localStorage.removeItem("email");
+    navigate("/");
     window.location.reload();
   };
   return (
