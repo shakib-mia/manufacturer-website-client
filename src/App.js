@@ -12,6 +12,7 @@ import MyProfile from "./components/pages/Dashboard/MyProfile";
 import AddReview from "./components/pages/Dashboard/AddReview";
 import Purchase from "./components/pages/Purchase";
 import RequireAuth from "./RequireAuth";
+import Blogs from "./components/pages/Blogs";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           }
         ></Route>
         <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
       </Routes>
       <ToastContainer
         position="bottom-right"

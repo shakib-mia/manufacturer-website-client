@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DeleteModal from "./DeleteModal";
 
 const ManageOrder = ({ items, setItem }) => {
+  console.log(items);
   return (
     <div className="flex flex-wrap">
       {items.map((data) => (

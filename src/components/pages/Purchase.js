@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 const Purchase = () => {
   const id = localStorage.getItem("id");
   const [data, getData] = useItems(`http://localhost:5000/products/${id}`);
-
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
   const user = localStorage.getItem("user");
@@ -58,7 +57,7 @@ const Purchase = () => {
           <img src={data[0]?.image} alt={data[0]?.title} />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">{data[0]?.name}</h2>
+          <h2 className="card-title">{data[0]?.title}</h2>
           <p>{data[0]?.description}</p>
         </div>
       </div>

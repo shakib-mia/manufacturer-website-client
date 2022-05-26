@@ -17,7 +17,6 @@ const Navbar = () => {
     window.location.reload();
   };
 
-  console.log(user);
   return (
     <div className="navbar bg-base-100 mx-auto shadow-lg fixed top-0 z-20">
       <div className="container mx-auto">
@@ -33,6 +32,9 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/about-me">My Portfolio</NavLink>
+            </li>
+            <li>
+              <NavLink to="/blogs">Blogs</NavLink>
             </li>
 
             {user ? (

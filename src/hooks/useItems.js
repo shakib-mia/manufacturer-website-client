@@ -6,7 +6,9 @@ const useItems = (url) => {
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
-      .then((data) => getData(data));
+      .then((data) => {
+        getData(data);
+      });
   }, []);
 
   return [data, getData];
