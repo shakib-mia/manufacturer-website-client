@@ -10,7 +10,7 @@ const MyOrders = () => {
   const email = localStorage.getItem("email");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/${email}`)
+    fetch(`https://intense-ravine-32136.herokuapp.com/orders/${email}`)
       .then((response) => response.json())
       .then((data) => getData(data));
   }, []);

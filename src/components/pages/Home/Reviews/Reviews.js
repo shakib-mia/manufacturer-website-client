@@ -5,7 +5,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 const Reviews = () => {
   const [reviews, getReviews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://intense-ravine-32136.herokuapp.com/reviews")
       .then((res) => res.json())
       .then((data) => getReviews(data));
   }, []);

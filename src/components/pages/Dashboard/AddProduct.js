@@ -20,7 +20,7 @@ const AddProduct = () => {
       pricePerUnit,
     };
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://intense-ravine-32136.herokuapp.com/products", {
       method: "put",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(newProduct),

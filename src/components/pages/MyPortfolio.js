@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const MyPortfolio = () => {
   const [projects, getProjects] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/projects")
+    fetch("https://intense-ravine-32136.herokuapp.com/projects")
       .then((res) => res.json())
       .then((data) => getProjects(data));
   }, []);

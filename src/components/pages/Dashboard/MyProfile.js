@@ -19,7 +19,7 @@ const MyProfile = () => {
       linkedInProfile: linkedInProfile,
     };
 
-    fetch(`http://localhost:5000/users/${email}`, {
+    fetch(`https://intense-ravine-32136.herokuapp.com/users/${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

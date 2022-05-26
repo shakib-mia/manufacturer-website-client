@@ -29,7 +29,7 @@ const Purchase = () => {
         quantity,
       };
 
-      fetch("http://localhost:5000/orders", {
+      fetch("https://intense-ravine-32136.herokuapp.com/orders", {
         method: "put",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(orderDetails),
@@ -37,7 +37,7 @@ const Purchase = () => {
         .then((res) => res.json())
         .then((data) => console.log(data));
 
-      fetch(`http://localhost:5000/orders/${email}`, {
+      fetch(`https://intense-ravine-32136.herokuapp.com/orders/${email}`, {
         method: "put",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(orderDetails),

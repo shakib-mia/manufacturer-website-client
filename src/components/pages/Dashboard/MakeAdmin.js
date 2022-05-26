@@ -4,7 +4,7 @@ const MakeAdmin = () => {
   const [users, getUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://intense-ravine-32136.herokuapp.com/users")
       .then((response) => response.json())
       .then((data) => getUsers(data));
   }, []);

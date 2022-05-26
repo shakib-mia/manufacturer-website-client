@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const DeleteModal = ({ item, setCancel }) => {
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/orders/${id}`, {
+    fetch(`https://intense-ravine-32136.herokuapp.com/orders/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

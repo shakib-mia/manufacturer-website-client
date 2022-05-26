@@ -36,7 +36,7 @@ const Register = () => {
       role: "user",
     };
 
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://intense-ravine-32136.herokuapp.com/users`, {
       method: "put",
       headers: {
         "content-type": "application/json",
@@ -60,7 +60,7 @@ const Register = () => {
     localStorage.setItem("email", gUser.user.email);
     id ? navigate(`/purchase/${id}`) : navigate("/");
 
-    fetch("http://localhost:5000/users", {
+    fetch("https://intense-ravine-32136.herokuapp.com/users", {
       method: "put",
       headers: {
         "content-type": "application/json",

@@ -29,7 +29,7 @@ const Login = () => {
   const [role, setRole] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${email}`)
+    fetch(`https://intense-ravine-32136.herokuapp.com/users/${email}`)
       .then((response) => response.json())
       .then((data) => {
         setDbEmail(data.email);
