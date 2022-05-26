@@ -7,6 +7,7 @@ const AddProduct = () => {
   const [minimumOrderQuantity, getMinimuOmOrder] = useState("");
   const [availableQuantity, getAvailable] = useState("");
   const [pricePerUnit, getPpu] = useState("");
+
   const addProduct = (event) => {
     event.preventDefault();
 

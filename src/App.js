@@ -16,7 +16,6 @@ import Blogs from "./components/pages/Blogs";
 import AddProduct from "./components/pages/Dashboard/AddProduct";
 import MakeAdmin from "./components/pages/Dashboard/MakeAdmin";
 import MaangeProducts from "./components/pages/Dashboard/MaangeProducts";
-import ManageOrder from "./components/pages/Dashboard/ManageOrder";
 
 function App() {
   return (
@@ -27,7 +26,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/about-me" element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path="/dashboard" element={<Dashbord></Dashbord>}>
-          <Route index element={<MyOrders></MyOrders>}></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="add-product" element={<AddProduct></AddProduct>}></Route>
           <Route path="orders" element={<MyOrders></MyOrders>}></Route>
           <Route path="profile" element={<MyProfile></MyProfile>}></Route>

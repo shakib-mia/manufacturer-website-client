@@ -41,9 +41,6 @@ const Navbar = () => {
                 <li className="items-center px-3">
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
-                <li className="items-center px-3">
-                  <NavLink to="/add-review">Add a Review</NavLink>
-                </li>
                 <li className="flex items-center">
                   <Link to="/dashboard/profile">{name}</Link>{" "}
                   <button className="bg-red-300 mx-3" onClick={handleSignOut}>

@@ -33,6 +33,7 @@ const Register = () => {
       email: user.user.email,
       name: user.user.displayName,
       password: password,
+      role: "user",
     };
 
     fetch(`http://localhost:5000/users`, {
