@@ -26,6 +26,7 @@ const Login = () => {
   const [dbEmail, setDbEmail] = useState("");
   const [dbPassword, setDbPassword] = useState("");
   const [dbName, setName] = useState("");
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:5000/users/${email}`)
@@ -34,17 +35,24 @@ const Login = () => {
         setDbEmail(data.email);
         setDbPassword(data.password);
         setName(data.name);
+        setRole(data.role);
       });
   });
 
   const handleSignIn = (event) => {
     event.preventDefault();
     if (email === dbEmail && password === dbPassword) {
-      console.log(email, password);
-      localStorage.setItem("name", dbName);
+      localStorage.setItem("email", email);
+      localStorage.setItem("user", dbName);
+      localStorage.getItem("id")
+        ? navigate(`/purchase/${localStorage.getItem("id")}`)
+        : navigate("/");
+
+      localStorage.setItem("role", role);
       window.location.reload();
     } else {
-      document.getElementById("error").innerText = "Invalid Email or Password";
+      document.getElementById("error").innerHTML =
+        "Email or password is incorrect";
     }
   };
 
@@ -68,10 +76,7 @@ const Login = () => {
   }
 
   if (gUser || user) {
-    localStorage.setItem(
-      "user",
-      gUser?.user.displayName || user?.user.displayName
-    );
+    localStorage.setItem("user", gUser?.user || user?.user);
     localStorage.setItem("email", gUser?.user.email);
     window.location.reload();
   }

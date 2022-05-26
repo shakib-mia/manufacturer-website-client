@@ -16,6 +16,8 @@ const Navbar = () => {
     navigate("/");
     window.location.reload();
   };
+
+  console.log(user);
   return (
     <div className="navbar bg-base-100 mx-auto shadow-lg fixed top-0 z-20">
       <div className="container mx-auto">
