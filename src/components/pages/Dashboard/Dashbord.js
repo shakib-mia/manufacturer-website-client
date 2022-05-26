@@ -5,16 +5,22 @@ import AddProduct from "./AddProduct";
 const Dashbord = () => {
   const role = localStorage.getItem("role");
   return (
-    <div className="drawer drawer-mobile">
+    <div className="drawer">
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
-        <h2 className="text-2xl font-bold text-purple-500">
+      <div className="drawer-content text-center">
+        <label
+          htmlFor="dashboard-sidebar"
+          className="drawer-overlay z-40 bg-green-400 px-5 py-2 mt-5"
+        >
+          Open drawer
+        </label>
+        <h2 className="text-2xl font-bold text-purple-500 mt-6 text-center">
           Welcome to your Dashboard
         </h2>
         <Outlet></Outlet>
       </div>
       <div className="drawer-side shadow-md">
-        <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
+        <label for="dashboard-sidebar" class="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-60 bg-base-100 text-base-content mt-16">
           {role === "user" ? (
             <>

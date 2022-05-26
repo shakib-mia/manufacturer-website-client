@@ -35,7 +35,10 @@ const MyProfile = () => {
       <h1 className="text-2xl text-center font-bold mb-5">My Profile</h1>
       <p className="text-center text-lg">Name: {name}</p>
       <p className="text-center text-lg">Email: {email}</p>
-      <form className="w-1/2 shadow-lg p-12 mx-auto" onSubmit={addDetails}>
+      <form
+        className="w-full lg:w-1/2 shadow-lg p-12 mx-auto"
+        onSubmit={addDetails}
+      >
         <textarea
           onBlur={(e) => setEducation(e.target.value)}
           type="text"
