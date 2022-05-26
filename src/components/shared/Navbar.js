@@ -4,8 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import auth from "./../../firebase.init";
 
 const Navbar = () => {
-  const user = localStorage.getItem("user");
-  const name = localStorage.getItem("name");
+  const name = localStorage.getItem("user");
   const navigate = useNavigate();
   const handleSignOut = () => {
     signOut(auth);
@@ -37,22 +36,13 @@ const Navbar = () => {
               <NavLink to="/blogs">Blogs</NavLink>
             </li>
 
-            {user ? (
+            {name ? (
               <>
                 <li className="items-center px-3">
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
-                <li className="flex items-center">
-                  <Link to="/dashboard/profile">{user}</Link>{" "}
-                  <button className="bg-red-300 mx-3" onClick={handleSignOut}>
-                    Sign Out
-                  </button>
-                </li>
-              </>
-            ) : name ? (
-              <>
                 <li className="items-center px-3">
-                  <NavLink to="/dashboard">Dashboard</NavLink>
+                  <NavLink to="/add-review">Add a Review</NavLink>
                 </li>
                 <li className="flex items-center">
                   <Link to="/dashboard/profile">{name}</Link>{" "}

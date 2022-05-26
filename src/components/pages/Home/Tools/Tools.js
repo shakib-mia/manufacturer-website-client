@@ -4,7 +4,7 @@ import useItems from "./../../../../hooks/useItems";
 
 const Tools = () => {
   const [data, getData] = useItems("http://localhost:5000/products");
-  const homeItems = data.slice(0, 6);
+
   const navigate = useNavigate();
 
   const buyNow = (id) => {
@@ -16,7 +16,7 @@ const Tools = () => {
     <div className="container mx-auto">
       <h1 className="text-4xl text-center font-bold">Tools</h1>
       <div className="flex flex-wrap justify-center">
-        {homeItems.map((item) => (
+        {data.map((item) => (
           <div
             className="card w-96 mx-4 bg-base-100 shadow-lg my-4"
             key={item._id}
