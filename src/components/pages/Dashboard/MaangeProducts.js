@@ -12,6 +12,28 @@ const MaangeProducts = () => {
   return (
     <div className="mt-24">
       <h1 className="text-2xl">Manage Products</h1>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra w-full">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Details</th>
+              <th>Favorite Color</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr>
+                <th>{product.name}</th>
+                <img src={product.image} alt={product.title} width="10%" />
+                <td>{product.description}</td>
+                <td>Blue</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
