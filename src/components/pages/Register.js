@@ -23,13 +23,11 @@ const Register = () => {
     useSendEmailVerification(auth);
 
   if (user) {
-    console.log(id);
-    sendEmailVerification(email);
+    console.log(user);
+
     user.user.displayName = firstName + " " + lastName;
     localStorage.setItem("user", user.user.displayName);
     localStorage.setItem("email", user.user.email);
-
-    id ? navigate(`/purchase/${id}`) : navigate("/");
 
     const userDetails = {
       email: user.user.email,
@@ -37,13 +35,7 @@ const Register = () => {
       password: password,
     };
 
-    // window.location.reload();
-    toast.success("Email Verification link has been sent", {
-      position: "bottom-right",
-      autoClose: 5000,
-    });
-
-    fetch("http://localhost:5000/users", {
+    fetch(`http://localhost:5000/users`, {
       method: "put",
       headers: {
         "content-type": "application/json",
@@ -52,6 +44,10 @@ const Register = () => {
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
+
+    id ? navigate(`/purchase/${id}`) : navigate("/");
+
+    // window.location.reload();
   }
 
   if (gUser) {
@@ -69,7 +65,9 @@ const Register = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify(gUserSummary),
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
     window.location.reload();
   }
 
@@ -119,7 +117,14 @@ const Register = () => {
               <p className="text-rose-500 text-center" id="error"></p>
 
               <button
-                onClick={() => createUserWithEmailAndPassword(email, password)}
+                onClick={() => {
+                  createUserWithEmailAndPassword(email, password);
+                  sendEmailVerification(email);
+                  toast.success("Email Verification link has been sent", {
+                    position: "bottom-right",
+                    autoClose: 5000,
+                  });
+                }}
                 className="btn bg-indigo-500 hover:bg-transparent hover:text-indigo-500 border-2 border-transparent hover:border-2 hover:border-primary"
               >
                 Register
