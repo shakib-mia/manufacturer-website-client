@@ -19,7 +19,6 @@ const MaangeProducts = () => {
               <th>Name</th>
               <th>Image</th>
               <th>Details</th>
-              <th>Favorite Color</th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +27,6 @@ const MaangeProducts = () => {
                 <th>{product.name}</th>
                 <img src={product.image} alt={product.title} width="10%" />
                 <td>{product.description}</td>
-                <td>Blue</td>
               </tr>
             ))}
           </tbody>
