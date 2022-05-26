@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const id = localStorage.getItem("id");
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [existingUser, getExistingUser] = useState({});
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -21,6 +22,31 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [dbEmail, setDbEmail] = useState("");
+  const [dbPassword, setDbPassword] = useState("");
+  const [dbName, setName] = useState("");
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${email}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setDbEmail(data.email);
+        setDbPassword(data.password);
+        setName(data.name);
+      });
+  });
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    if (email === dbEmail && password === dbPassword) {
+      console.log(email, password);
+      localStorage.setItem("name", dbName);
+      window.location.reload();
+    } else {
+      document.getElementById("error").innerText = "Invalid Email or Password";
+    }
+  };
 
   const handleGoogleSignIn = () => {
     signInWithGoogle();
@@ -79,9 +105,9 @@ const Login = () => {
               required
             />
             <div className="text-right pr-10 lg:pr-16">
-              <p className="text-rose-500 text-center">{error?.message}</p>
+              <p className="text-rose-500 text-center" id="error"></p>
               <button
-                onClick={() => signInWithEmailAndPassword(email, password)}
+                onClick={handleSignIn}
                 className="btn bg-indigo-500 hover:bg-transparent hover:text-indigo-500 border-2 border-transparent hover:border-2 hover:border-primary"
               >
                 Login

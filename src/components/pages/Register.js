@@ -31,6 +31,12 @@ const Register = () => {
 
     id ? navigate(`/purchase/${id}`) : navigate("/");
 
+    const userDetails = {
+      email: user.user.email,
+      name: user.user.displayName,
+      password: password,
+    };
+
     // window.location.reload();
     toast.success("Email Verification link has been sent", {
       position: "bottom-right",
@@ -42,12 +48,10 @@ const Register = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        email: user.user.email,
-        name: user.user.displayName,
-        password: password,
-      }),
-    });
+      body: JSON.stringify(userDetails),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
 
   if (gUser) {
