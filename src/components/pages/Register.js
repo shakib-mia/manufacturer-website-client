@@ -45,6 +45,7 @@ const Register = () => {
       body: JSON.stringify({
         email: user.user.email,
         name: user.user.displayName,
+        password: password,
       }),
     });
   }
