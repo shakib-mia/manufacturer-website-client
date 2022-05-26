@@ -5,7 +5,9 @@ import { toast } from "react-toastify";
 
 const Purchase = () => {
   const id = localStorage.getItem("id");
-  const [data, getData] = useItems(`http://localhost:5000/products/${id}`);
+  const [data, getData] = useItems(
+    `https://intense-ravine-32136.herokuapp.com/products/${id}`
+  );
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
   const user = localStorage.getItem("user");

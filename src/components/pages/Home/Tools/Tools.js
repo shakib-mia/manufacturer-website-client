@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import useItems from "./../../../../hooks/useItems";
 
 const Tools = () => {
-  const [data, getData] = useItems("http://localhost:5000/products");
+  const [data, getData] = useItems(
+    "https://intense-ravine-32136.herokuapp.com/products"
+  );
 
   const navigate = useNavigate();
 
