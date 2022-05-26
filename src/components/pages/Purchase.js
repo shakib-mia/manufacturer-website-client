@@ -23,7 +23,7 @@ const Purchase = () => {
         image: data[0]?.image,
         details: data[0]?.description,
         perUnitPrice: data[0]?.pricePerUnit,
-        name: data[0]?.title,
+        title: data[0]?.title,
         email,
         address,
         phoneNumber,

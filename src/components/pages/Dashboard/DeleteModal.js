@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const DeleteModal = ({ item }) => {
+const DeleteModal = ({ item, setCancel }) => {
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/orders/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
+    window.location.reload();
+  };
   return (
     <div>
       <input type="checkbox" id="my-modal-3" className="modal-toggle" />
@@ -20,9 +29,11 @@ const DeleteModal = ({ item }) => {
             <label
               htmlFor="my-modal-3"
               className="bg-red-500 px-6 py-2 text-white rounded"
-              //   onClick={() => cancelOrder(data._id)}
+              onClick={() => {
+                handleDelete(item);
+              }}
             >
-              Cancel {item.title}
+              Cancel
             </label>
           </div>
         </div>
