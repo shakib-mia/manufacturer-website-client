@@ -28,6 +28,7 @@ const Purchase = () => {
         phoneNumber,
         quantity,
       };
+
       fetch("http://localhost:5000/orders", {
         method: "put",
         headers: { "content-type": "application/json" },
@@ -35,6 +36,7 @@ const Purchase = () => {
       })
         .then((res) => res.json())
         .then((data) => console.log(data));
+
       fetch(`http://localhost:5000/orders/${email}`, {
         method: "put",
         headers: { "content-type": "application/json" },

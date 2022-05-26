@@ -16,6 +16,8 @@ import Blogs from "./components/pages/Blogs";
 import AddProduct from "./components/pages/Dashboard/AddProduct";
 import MakeAdmin from "./components/pages/Dashboard/MakeAdmin";
 import MaangeProducts from "./components/pages/Dashboard/MaangeProducts";
+import ManageOrder from "./components/pages/Dashboard/ManageOrder";
+import ManageAllOrders from "./components/pages/Dashboard/ManageAllOrders";
 
 function App() {
   return (
@@ -35,6 +37,10 @@ function App() {
           <Route
             path="manage-products"
             element={<MaangeProducts></MaangeProducts>}
+          ></Route>
+          <Route
+            path="manage-all-orders"
+            element={<ManageAllOrders></ManageAllOrders>}
           ></Route>
         </Route>
         <Route
