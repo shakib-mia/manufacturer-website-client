@@ -9,6 +9,7 @@ const Purchase = () => {
 
   const email = localStorage.getItem("email");
   const name = localStorage.getItem("name");
+  const user = localStorage.getItem("user");
   const [address, setAddress] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [orderQuantity, setOrderQuantity] = useState(0);
@@ -22,7 +23,7 @@ const Purchase = () => {
         image: data[0]?.image,
         details: data[0]?.description,
         perUnitPrice: data[0]?.pricePerUnit,
-        name,
+        name: data[0]?.title,
         email,
         address,
         phoneNumber,
@@ -54,7 +55,7 @@ const Purchase = () => {
     <div className="mt-20 container mx-auto">
       <div className="card w-96 mx-auto bg-base-100 shadow-xl">
         <figure>
-          <img src={data[0]?.image} alt="Shoes" />
+          <img src={data[0]?.image} alt={data[0]?.title} />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{data[0]?.name}</h2>
@@ -76,7 +77,7 @@ const Purchase = () => {
             type="text"
             name="name"
             className="w-11/12 block mx-auto border-2 my-4 py-3 px-2"
-            value={name}
+            value={name || user}
             disabled
           />
           <input
