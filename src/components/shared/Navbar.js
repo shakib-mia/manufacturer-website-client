@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div class="navbar-start">
+      <div class="navbar-start flex w-full justify-between">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">
             <svg
@@ -72,6 +72,7 @@ const Navbar = () => {
         <NavLink to="/" className="btn btn-ghost normal-case text-center">
           Manufacturer Website
         </NavLink>
+        <div></div>
       </div>
       <div className="navbar bg-base-100 mx-auto shadow-lg fixed top-0 z-20 hidden lg:block">
         <div className="container mx-auto">
