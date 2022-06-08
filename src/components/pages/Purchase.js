@@ -46,6 +46,7 @@ const Purchase = () => {
       })
         .then((res) => res.json())
         .then((data) => console.log(data));
+
       toast.success("Order Placed Successfully");
     } else {
       toast.error(

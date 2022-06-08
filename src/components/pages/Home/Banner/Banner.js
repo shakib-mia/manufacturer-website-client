@@ -8,7 +8,7 @@ const Banner = () => {
       .then((data) => getProducts(data));
   });
   return (
-    <div className="carousel w-full h-screen z-0">
+    <div className="carousel w-full h-full lg:h-screen z-0">
       <div id="slide1" className="carousel-item relative w-full">
         <img src={products[0]?.image} className="w-full p-20" alt="carousel" />
         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

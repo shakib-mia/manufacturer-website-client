@@ -14,16 +14,37 @@ const Dashbord = () => {
       <div className="drawer-side shadow-md">
         <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-60 bg-base-100 text-base-content mt-16">
-          {/* <!-- Sidebar content here --> */}
-          <li>
-            <NavLink to="/dashboard/orders">My Orders</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/add-review">Add A Review</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/profile">My Profile</NavLink>
-          </li>
+          {localStorage.getItem("role") === "admin" ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/profile">My Profile</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/add-product">Add Product</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-all-orders">
+                  Manage All Orders
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/make-admin">Make Admin</NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              {" "}
+              <li>
+                <NavLink to="/dashboard/orders">My Orders</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/add-review">Add A Review</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/profile">My Profile</NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>

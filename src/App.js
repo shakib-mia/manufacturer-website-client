@@ -18,12 +18,14 @@ import MakeAdmin from "./components/pages/Dashboard/MakeAdmin";
 import MaangeProducts from "./components/pages/Dashboard/MaangeProducts";
 import ManageOrder from "./components/pages/Dashboard/ManageOrder";
 import ManageAllOrders from "./components/pages/Dashboard/ManageAllOrders";
+import ErrorPage from "./components/pages/ErrorPage/ErrorPage";
 
 function App() {
   return (
     <div className="App">
       <Navbar></Navbar>
       <Routes>
+        <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/about-me" element={<MyPortfolio></MyPortfolio>}></Route>
