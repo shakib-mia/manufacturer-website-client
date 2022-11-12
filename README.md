@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Features
+1. This is a React based Single Page Application
+2. It has react-router for why the website loads fast.
+3. It has simple firebase Authentication.
+4. In this website You can sign in with custom email, gmail and github.
+5. It is a responsive website.
+
 ## Available Scripts
 
 In the project directory, you can run:
